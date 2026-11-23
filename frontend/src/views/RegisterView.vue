@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ApiError } from '../api/client'
 import type { Role } from '../api/auth'
+import { messageForError } from '../i18n/errors'
+import { t } from '../i18n/fa'
 import { useAuthStore } from '../stores/auth'
 
 const email = ref('')
@@ -21,10 +22,7 @@ async function submit(): Promise<void> {
       role: role.value,
     })
   } catch (cause) {
-    error.value =
-      cause instanceof ApiError
-        ? cause.message
-        : 'Unable to create your account. Please try again.'
+    error.value = messageForError(cause)
   } finally {
     loading.value = false
   }
@@ -32,17 +30,18 @@ async function submit(): Promise<void> {
 </script>
 
 <template>
-  <main class="auth-page">
+  <main class="auth-page" dir="rtl">
     <section class="auth-card" aria-labelledby="register-title">
-      <h1 id="register-title">Create an account</h1>
-      <p class="subtitle">Mobile Accessories Marketplace</p>
+      <h1 id="register-title">{{ t('register.title') }}</h1>
+      <p class="subtitle">{{ t('register.subtitle') }}</p>
 
       <form @submit.prevent="submit" novalidate>
         <div class="field">
-          <label for="email">Email</label>
+          <label for="email">{{ t('register.email') }}</label>
           <input
             id="email"
             v-model="email"
+            dir="ltr"
             type="email"
             autocomplete="email"
             required
@@ -50,39 +49,41 @@ async function submit(): Promise<void> {
         </div>
 
         <div class="field">
-          <label for="password">Password</label>
+          <label for="password">{{ t('register.password') }}</label>
           <input
             id="password"
             v-model="password"
+            dir="ltr"
             type="password"
             autocomplete="new-password"
             minlength="8"
             maxlength="72"
             required
           />
-          <small>Use between 8 and 72 characters.</small>
+          <small>{{ t('register.passwordHint') }}</small>
         </div>
 
         <div class="field">
-          <label for="role">I am a</label>
+          <label for="role">{{ t('register.role') }}</label>
           <select id="role" v-model="role">
-            <option value="buyer">Buyer — browse and buy accessories</option>
-            <option value="seller">Seller — showcase my products</option>
+            <option value="buyer">{{ t('register.roleBuyer') }}</option>
+            <option value="seller">{{ t('register.roleSeller') }}</option>
           </select>
         </div>
 
         <p v-if="error" class="error" role="alert">{{ error }}</p>
 
         <button type="submit" :disabled="loading">
-          {{ loading ? 'Creating account…' : 'Create account' }}
+          {{ loading ? t('register.submitting') : t('register.submit') }}
         </button>
       </form>
 
       <p v-if="auth.isAuthenticated" class="success" role="status">
-        Your account is ready and you are signed in.
+        {{ t('register.success') }}
       </p>
       <p class="switch">
-        Already registered? <RouterLink to="/login">Sign in</RouterLink>
+        {{ t('register.switchPrompt') }}
+        <RouterLink to="/login">{{ t('register.switchLink') }}</RouterLink>
       </p>
     </section>
   </main>

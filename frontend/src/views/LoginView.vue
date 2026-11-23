@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ApiError } from '../api/client'
+import { messageForError } from '../i18n/errors'
+import { t } from '../i18n/fa'
 import { useAuthStore } from '../stores/auth'
 
 const email = ref('')
@@ -15,8 +16,7 @@ async function submit(): Promise<void> {
   try {
     await auth.login({ email: email.value, password: password.value })
   } catch (cause) {
-    error.value =
-      cause instanceof ApiError ? cause.message : 'Unable to sign in. Please try again.'
+    error.value = messageForError(cause)
   } finally {
     loading.value = false
   }
@@ -24,17 +24,18 @@ async function submit(): Promise<void> {
 </script>
 
 <template>
-  <main class="auth-page">
+  <main class="auth-page" dir="rtl">
     <section class="auth-card" aria-labelledby="login-title">
-      <h1 id="login-title">Sign in</h1>
-      <p class="subtitle">Mobile Accessories Marketplace</p>
+      <h1 id="login-title">{{ t('login.title') }}</h1>
+      <p class="subtitle">{{ t('login.subtitle') }}</p>
 
       <form @submit.prevent="submit" novalidate>
         <div class="field">
-          <label for="email">Email</label>
+          <label for="email">{{ t('login.email') }}</label>
           <input
             id="email"
             v-model="email"
+            dir="ltr"
             type="email"
             autocomplete="email"
             required
@@ -42,10 +43,11 @@ async function submit(): Promise<void> {
         </div>
 
         <div class="field">
-          <label for="password">Password</label>
+          <label for="password">{{ t('login.password') }}</label>
           <input
             id="password"
             v-model="password"
+            dir="ltr"
             type="password"
             autocomplete="current-password"
             required
@@ -55,15 +57,16 @@ async function submit(): Promise<void> {
         <p v-if="error" class="error" role="alert">{{ error }}</p>
 
         <button type="submit" :disabled="loading">
-          {{ loading ? 'Signing in…' : 'Sign in' }}
+          {{ loading ? t('login.submitting') : t('login.submit') }}
         </button>
       </form>
 
       <p v-if="auth.isAuthenticated" class="success" role="status">
-        You are signed in.
+        {{ t('login.success') }}
       </p>
       <p class="switch">
-        New here? <RouterLink to="/register">Create an account</RouterLink>
+        {{ t('login.switchPrompt') }}
+        <RouterLink to="/register">{{ t('login.switchLink') }}</RouterLink>
       </p>
     </section>
   </main>

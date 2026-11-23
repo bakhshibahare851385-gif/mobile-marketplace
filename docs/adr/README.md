@@ -18,3 +18,4 @@ supersedes the old one and update this index.
 | [0008](./ADR-0008-catalog-caching.md) | Cache read-heavy catalog responses with Redis | Accepted |
 | [0009](./ADR-0009-order-snapshots.md) | Use immutable order snapshots and atomic stock decrement | Accepted |
 | [0010](./ADR-0010-sqlite-mvp.md) | Use SQLite for the MVP, migrate to PostgreSQL later | Accepted |
+| [0011](./ADR-0011-i18n-approach.md) | Use a lightweight typed Persian catalog | Accepted |

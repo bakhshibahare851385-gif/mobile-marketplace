@@ -6,6 +6,15 @@ links to a spec, plan, or ADR where one exists. Status values: `Backlog`,
 
 Legend: **[T]** test written first · **[I]** integration test · **[E]** end-to-end test.
 
+## In focus — Persian Localization and RTL (L-01)
+
+- **Feature:** Persian UI + RTL for Login and Register · **Status:** Done ·
+  **Specs:** [SPEC](./docs/features/localization/SPEC.md) · [PLAN](./docs/features/localization/PLAN.md) ·
+  ADR-0011
+- **Scope:** two existing pages only; no new pages, no backend changes.
+
+---
+
 ## In focus — Authentication (S-01)
 
 - **Feature:** Registration & Login · **Status:** Ready · **Specs:**
@@ -83,6 +92,12 @@ Legend: **[T]** test written first · **[I]** integration test · **[E]** end-to
 | N-02 | Seller messaging / support chat | Backlog | `ROADMAP.md` |
 | N-03 | Promo codes and discounts | Backlog | `ROADMAP.md` |
 | N-04 | Recommendations based on browsing and purchases | Backlog | `ROADMAP.md` |
+
+## Cross-cutting — Localization
+
+| ID | Task | Status | Refs |
+| --- | --- | --- | --- |
+| L-01 | Persian localization + RTL layout for Login/Register **[T]** | Done | [SPEC](./docs/features/localization/SPEC.md), [PLAN](./docs/features/localization/PLAN.md), ADR-0011 |
 
 ---
 

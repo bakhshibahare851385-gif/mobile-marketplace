@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: Tahoma, 'Segoe UI', system-ui, sans-serif;
   color: #1f2937;
   background: #f3f4f6;
 }
@@ -34,18 +34,18 @@ h1 {
 }
 
 .subtitle {
-  margin: 0.25rem 0 1.5rem;
+  margin-block: 0.25rem 1.5rem;
   color: #6b7280;
   font-size: 0.9rem;
 }
 
 .field {
-  margin-bottom: 1rem;
+  margin-block-end: 1rem;
 }
 
 label {
   display: block;
-  margin-bottom: 0.35rem;
+  margin-block-end: 0.35rem;
   font-weight: 600;
   font-size: 0.9rem;
 }
@@ -53,10 +53,15 @@ label {
 input,
 select {
   width: 100%;
-  padding: 0.65rem 0.75rem;
+  padding-block: 0.65rem;
+  padding-inline: 0.75rem;
   border: 1px solid #d1d5db;
   border-radius: 0.5rem;
   font: inherit;
+}
+
+[dir='rtl'] input[dir='ltr'] {
+  text-align: left;
 }
 
 input:focus,
@@ -67,13 +72,13 @@ select:focus {
 
 small {
   display: block;
-  margin-top: 0.3rem;
+  margin-block-start: 0.3rem;
   color: #6b7280;
 }
 
 button {
   width: 100%;
-  margin-top: 0.5rem;
+  margin-block-start: 0.5rem;
   padding: 0.7rem;
   border: 0;
   border-radius: 0.5rem;
@@ -100,7 +105,7 @@ button:disabled {
 }
 
 .switch {
-  margin-top: 1.25rem;
+  margin-block-start: 1.25rem;
   font-size: 0.9rem;
   text-align: center;
 }
